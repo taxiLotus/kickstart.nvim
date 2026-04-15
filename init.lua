@@ -90,6 +90,11 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Disables netrw for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -102,6 +107,7 @@ vim.g.have_nerd_font = true
 vim.o.number = false
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
+vim.o.number = true
 vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
@@ -221,8 +227,9 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Insert a newline without going into Insert mode
-vim.keymap.set('n', 'oo', 'o<Esc>k')
-vim.keymap.set('n', 'OO', 'O<Esc>j')
+--
+-- vim.keymap.set('n', 'oo', 'o<Esc>k')
+-- vim.keymap.set('n', 'OO', 'O<Esc>j')
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -805,7 +812,7 @@ require('lazy').setup({
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
 
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
@@ -821,16 +828,14 @@ require('lazy').setup({
     lazy = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.g.gruvbox_material_enable_italic = true
+      vim.g.everforest_enable_italic = true
       vim.cmd [[
         if has('termguicolors')
           set termguicolors
         endif
       ]]
       -- vim.cmd 'set background=light'
+      vim.g.everforest_background = 'soft'
       vim.cmd.colorscheme 'everforest'
     end,
   },
@@ -863,19 +868,6 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
-
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function() return '%2l:%-2v' end
 
       -- ... and there is more!
       --  Check out: https://github.com/nvim-mini/mini.nvim
