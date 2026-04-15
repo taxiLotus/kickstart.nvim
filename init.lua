@@ -164,9 +164,13 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- <Tab> settings
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
+
+-- Disables swapfiles
+vim.o.swf = false
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
