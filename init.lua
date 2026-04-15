@@ -400,7 +400,7 @@ require('lazy').setup({
           mappings = {
             i = { ['<C-enter>'] = 'to_fuzzy_refine' },
           },
-          initial_mode = 'normal',
+          initial_mode = 'insert',
         },
         pickers = {},
 
@@ -826,6 +826,7 @@ require('lazy').setup({
           set termguicolors
         endif
       ]]
+      -- vim.cmd 'set background=light'
       vim.cmd.colorscheme 'everforest'
     end,
   },
@@ -885,7 +886,7 @@ require('lazy').setup({
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
     config = function()
       -- ensure basic parser are installed
-      local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local parsers = { 'bash', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
       require('nvim-treesitter').install(parsers)
 
       ---@param buf integer

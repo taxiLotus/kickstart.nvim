@@ -6,5 +6,20 @@
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  {},
+  {
+    'uhs-robert/sshfs.nvim',
+    opts = {
+      -- Refer to the configuration section below
+      -- or leave empty for defaults
+      hooks = {
+        on_exit = {
+          auto_unmount = false,
+          clean_mount_folders = false,
+        },
+        on_mount = {
+          auto_change_to_dir = true,
+        },
+      },
+    },
+  },
 }
