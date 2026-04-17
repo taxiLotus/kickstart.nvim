@@ -67,7 +67,11 @@ return {
             separator = true, -- use a "true" to enable the default, or set your own character
           },
         },
+
+        right_mouse_command = 'vertical sbuffer %d',
+        middle_mouse_command = 'bdelete! %d',
       },
+      -- keymaps
       vim.keymap.set('n', '<leader>1', '<cmd>BufferLineGoToBuffer 1<CR>', { silent = true }),
       vim.keymap.set('n', '<leader>2', '<cmd>BufferLineGoToBuffer 2<CR>', { silent = true }),
       vim.keymap.set('n', '<leader>3', '<cmd>BufferLineGoToBuffer 3<CR>', { silent = true }),
