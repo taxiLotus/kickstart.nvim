@@ -43,55 +43,63 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    require('lualine').setup {
-      options = {
-        theme = 'everforest',
-        section_separators = '',
-        component_separators = '|',
-      },
-    },
+    dependencies = { 'nvim-mini/mini.icons' },
+    config = function()
+      require('lualine').setup {
+        options = {
+          theme = 'everforest',
+          section_separators = '',
+          component_separators = '|',
+        },
+      }
+    end,
   },
 
   {
     'akinsho/bufferline.nvim',
     version = '*',
     dependencies = 'nvim-tree/nvim-web-devicons',
-    require('bufferline').setup {
-      options = {
-        offsets = {
-          {
-            filetype = 'NvimTree',
-            text = 'File Explorer',
-            highlight = 'Directory',
-            separator = true, -- use a "true" to enable the default, or set your own character
+    config = function()
+      require('bufferline').setup {
+        options = {
+          offsets = {
+            {
+              filetype = 'NvimTree',
+              text = 'File Explorer',
+              highlight = 'Directory',
+              separator = true, -- use a "true" to enable the default, or set your own character
+            },
           },
-        },
 
-        right_mouse_command = 'vertical sbuffer %d',
-        middle_mouse_command = 'bdelete! %d',
-      },
-      -- keymaps
-      vim.keymap.set('n', '<leader>1', '<cmd>BufferLineGoToBuffer 1<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>2', '<cmd>BufferLineGoToBuffer 2<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>3', '<cmd>BufferLineGoToBuffer 3<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>4', '<cmd>BufferLineGoToBuffer 4<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>5', '<cmd>BufferLineGoToBuffer 5<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>6', '<cmd>BufferLineGoToBuffer 6<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>7', '<cmd>BufferLineGoToBuffer 7<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>8', '<cmd>BufferLineGoToBuffer 8<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<CR>', { silent = true }),
-      vim.keymap.set('n', '<leader>$', '<cmd>BufferLineGoToBuffer -1<CR>', { silent = true }),
-    },
+          right_mouse_command = 'vertical sbuffer %d',
+          middle_mouse_command = 'bdelete! %d',
+        },
+        -- keymaps
+        vim.keymap.set('n', '<leader>1', '<cmd>BufferLineGoToBuffer 1<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>2', '<cmd>BufferLineGoToBuffer 2<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>3', '<cmd>BufferLineGoToBuffer 3<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>4', '<cmd>BufferLineGoToBuffer 4<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>5', '<cmd>BufferLineGoToBuffer 5<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>6', '<cmd>BufferLineGoToBuffer 6<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>7', '<cmd>BufferLineGoToBuffer 7<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>8', '<cmd>BufferLineGoToBuffer 8<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>$', '<cmd>BufferLineGoToBuffer -1<CR>', { silent = true }),
+      }
+    end,
   },
 
   {
-    'nvim-tree/nvim-tree.lua',
-    version = '*',
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { 'nvim-mini/mini.icons', opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function() require('nvim-tree').setup {} end,
+
+    config = function() require('oil').setup() end,
   },
 }
