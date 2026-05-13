@@ -178,6 +178,9 @@ vim.o.tabstop = 4
 -- Disables swapfiles
 vim.o.swf = false
 
+-- For auto-session
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -227,7 +230,6 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Insert a newline without going into Insert mode
---
 -- vim.keymap.set('n', 'oo', 'o<Esc>k')
 -- vim.keymap.set('n', 'OO', 'O<Esc>j')
 
@@ -272,6 +274,8 @@ rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 --
+--
+
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
@@ -836,6 +840,8 @@ require('lazy').setup({
       ]]
       -- vim.cmd 'set background=light'
       vim.g.everforest_background = 'soft'
+      -- vim.g.everforest_dim_inactive_windows = 1
+      -- vim.g.everforest_transparent_background = 1
       vim.cmd.colorscheme 'everforest'
     end,
   },
@@ -942,7 +948,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  require 'kickstart.plugins.autopairs',
+  -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommended keymaps
 
