@@ -276,6 +276,23 @@ rtp:prepend(lazypath)
 --
 --
 
+-- require('windwp/nvim-ts-autotag').setup {
+--   opts = {
+--     -- Defaults
+--     enable_close = true, -- Auto close tags
+--     enable_rename = true, -- Auto rename pairs of tags
+--     enable_close_on_slash = false, -- Auto close on trailing </
+--   },
+--   -- Also override individual filetype configs, these take priority.
+--   -- Empty by default, useful if one of the "opts" global settings
+--   -- doesn't work well in a specific filetype
+--   per_filetype = {
+--     ['html'] = {
+--       enable_close = false,
+--     },
+--   },
+-- }
+
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
@@ -891,7 +908,7 @@ require('lazy').setup({
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
     config = function()
       -- ensure basic parser are installed
-      local parsers = { 'bash', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local parsers = { 'bash', 'c', 'css', 'cpp', 'diff', 'html', 'javascript', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
       require('nvim-treesitter').install(parsers)
 
       ---@param buf integer

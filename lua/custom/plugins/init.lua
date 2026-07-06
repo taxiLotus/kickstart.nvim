@@ -85,6 +85,13 @@ return {
         vim.keymap.set('n', '<leader>8', '<cmd>BufferLineGoToBuffer 8<CR>', { silent = true }),
         vim.keymap.set('n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<CR>', { silent = true }),
         vim.keymap.set('n', '<leader>$', '<cmd>BufferLineGoToBuffer -1<CR>', { silent = true }),
+
+        -- moving current buffer
+        vim.keymap.set('n', '[B', '<cmd>BufferLineMovePrev<CR>', { silent = true }),
+        vim.keymap.set('n', ']B', '<cmd>BufferLineMoveNext<CR>', { silent = true }),
+
+        vim.keymap.set('n', '<leader>gb', '<cmd>BufferLinePick<CR>', { silent = true }),
+        vim.keymap.set('n', '<leader>gd', '<cmd>BufferLinePickClose<CR>', { silent = true }),
       }
     end,
   },
@@ -145,5 +152,36 @@ return {
       -- vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
       -- vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
     end,
+  },
+
+  {
+    'brianhuster/live-preview.nvim',
+    dependencies = {
+      -- You can choose one of the following pickers
+      'nvim-telescope/telescope.nvim',
+      -- 'ibhagwan/fzf-lua',
+      -- 'echasnovski/mini.pick',
+      -- 'folke/snacks.nvim',
+    },
+  },
+
+  {
+    'windwp/nvim-ts-autotag',
+
+    opts = {
+      -- Defaults
+      enable_close = true, -- Auto close tags
+      enable_rename = true, -- Auto rename pairs of tags
+      enable_close_on_slash = false, -- Auto close on trailing </
+    },
+
+    -- Also override individual filetype configs, these take priority.
+    -- Empty by default, useful if one of the "opts" global settings
+    -- doesn't work well in a specific filetype
+    per_filetype = {
+      ['html'] = {
+        enable_close = false,
+      },
+    },
   },
 }
